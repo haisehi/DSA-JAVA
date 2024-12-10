@@ -71,16 +71,49 @@ public class SinglyLinkedList {
         current.next=newNode;
     }
 
+    // Delete first node of a Singly Linked List
     public ListNode deleteF(){
         if(head == null){
             return null;
         }
-
         ListNode temp = head;
         head = head.next;
         temp.next = null;
 
         return temp;
+    }
+
+    // Delete a node from a Singly Linked List at a given position
+    public void delete (int position){
+        // position is valid and starting from 1
+        if(position ==1){
+            head = head.next;
+        }
+        else {
+            ListNode previous = head;
+            int count = 1;
+            while (count < position-1){
+                previous = previous.next;
+                count++;
+            }
+            ListNode current = previous.next;
+            previous.next =current.next;
+        }
+    }
+
+    // Delete last node of a Singly Linked List
+    public ListNode deleteL(){
+        if(head==null || head.next==null){
+            return head;
+        }
+        ListNode current = head;
+        ListNode previous = null;
+        while (current.next !=null){
+            previous= current;
+            current=current.next;
+        }
+        previous.next=null;
+        return current;
     }
 
     public static void main(String[] args) {
@@ -112,9 +145,20 @@ public class SinglyLinkedList {
         sll.display();
         System.out.println("\nlength of a Singly Linked List: "+sll.countNode());
 
-        // Delete
+        // Delete First
         System.out.println("Delete first node "+sll.deleteF().data);
+        // Display
+        sll.display();
+        System.out.println("\nlength of a Singly Linked List: "+sll.countNode());
 
+        // Delete Last
+        System.out.println("Delete last node "+sll.deleteL().data);
+        // Display
+        sll.display();
+        System.out.println("\nlength of a Singly Linked List: "+sll.countNode());
+
+        // Delete nth
+        sll.delete(3);
         // Display
         sll.display();
         System.out.println("\nlength of a Singly Linked List: "+sll.countNode());
