@@ -1,3 +1,5 @@
+package Singly_Linked_List;
+
 public class SinglyLinkedList {
     private ListNode head;
     private static class ListNode{
@@ -116,6 +118,22 @@ public class SinglyLinkedList {
         return current;
     }
 
+    // search an element in a Singly Linked List
+    public boolean find(int searchKey){
+        if (head == null){
+            return false;
+        }
+
+        ListNode current = head;
+        while (current != null){
+            if (current.data == searchKey){
+                return true;
+            }
+            current = current.next;
+        }
+        return false;
+    }
+
     public static void main(String[] args) {
         SinglyLinkedList sll = new SinglyLinkedList();
         //Input data to head node
@@ -162,5 +180,12 @@ public class SinglyLinkedList {
         // Display
         sll.display();
         System.out.println("\nlength of a Singly Linked List: "+sll.countNode());
+
+        // search an element
+        if (sll.find(5)){
+            System.out.println("Search key found !!!");
+        } else {
+            System.out.println("Search key not found !!!");
+        }
     }
 }
